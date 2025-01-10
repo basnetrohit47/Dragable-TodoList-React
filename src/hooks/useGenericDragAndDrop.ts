@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 interface DragAndDropProps<T> {
   selectedItemClass?: string; // Class for element which is selected
   childSelector?: string; // Selector for child element to style
+  childSelectorStyle?: string;
   items: T[]; // List of items to manage
   onDrop: (updatedItems: T[]) => void; // Callback to handle updated items
   getItemId: (item: T) => number; // Function to extract unique ID from an item
@@ -12,6 +13,7 @@ interface DragAndDropProps<T> {
 export const useGenericDrag = <T>({
   selectedItemClass,
   childSelector,
+  childSelectorStyle,
   items,
   onDrop,
   getItemId,
@@ -20,8 +22,14 @@ export const useGenericDrag = <T>({
   const prevDraggedElement = useRef<HTMLElement | null>(null);
   const [draggingItemId, setDraggingItemId] = useState<number | null>(null);
 
-  const defaultReorder = (items: T[], draggedId: number, targetId: number): T[] => {
-    const draggingIndex = items.findIndex((item) => getItemId(item) === draggedId);
+  const defaultReorder = (
+    items: T[],
+    draggedId: number,
+    targetId: number
+  ): T[] => {
+    const draggingIndex = items.findIndex(
+      (item) => getItemId(item) === draggedId
+    );
     const targetIndex = items.findIndex((item) => getItemId(item) === targetId);
 
     if (draggingIndex === -1 || targetIndex === -1) return items;
@@ -37,25 +45,28 @@ export const useGenericDrag = <T>({
     setDraggingItemId(getItemId(item));
 
     const element = e.currentTarget as HTMLElement;
-    const childElement = childSelector ? element.querySelector(childSelector) : null;
-
-    if (childElement) {
-      childElement.classList.add(selectedItemClass??"");
-    } else {
-      element.classList.add(selectedItemClass??"")
-     
-    }
+    document.body.style.cursor = "pointer";
+    if (selectedItemClass) element.classList.add(selectedItemClass);
   };
 
   const handleDragOver = (e: React.DragEvent, targetItem: T) => {
     e.preventDefault();
 
     if (prevDraggedElement.current) {
-      prevDraggedElement.current.style.opacity = "1";
+      const childElement =
+        childSelector &&
+        prevDraggedElement.current.querySelector(childSelector);
+      if (childSelectorStyle && childElement)
+        childElement.classList.remove(childSelectorStyle);
     }
 
     const targetItemElement = e.currentTarget as HTMLElement;
-    targetItemElement.style.opacity = "0";
+
+    const childTargetItemElement =
+      childSelector && targetItemElement.querySelector(childSelector);
+    if (childSelectorStyle && childTargetItemElement)
+      childTargetItemElement.classList.add(childSelectorStyle);
+
     prevDraggedElement.current = targetItemElement;
 
     if (draggingItemId !== null) {
@@ -68,20 +79,13 @@ export const useGenericDrag = <T>({
   };
 
   const handleDragEnd = (e: React.DragEvent) => {
+    document.body.style.cursor = "";
     setDraggingItemId(null);
     const element = e.currentTarget as HTMLElement;
-
-    if (prevDraggedElement.current) {
-      prevDraggedElement.current.style.opacity = "1";
-    }
-
-    const childElement = childSelector ? element.querySelector(childSelector) : null;
-
-    if (childElement) {
-      childElement.classList.remove(selectedItemClass??"");
-    } else {
-      element.style.opacity = "1";
-    }
+    const childElement = childSelector && element.querySelector(childSelector);
+    if (selectedItemClass) element.classList.remove(selectedItemClass);
+    if (childSelectorStyle && childElement)
+      childElement.classList.remove(childSelectorStyle);
   };
 
   return {

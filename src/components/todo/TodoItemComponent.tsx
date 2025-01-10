@@ -26,13 +26,13 @@ export const TodoItemComponent = ({
   return (
     <>
       <Box
-        className=" bg-[#f5f5f5] mx-4 my-2  p-2 rounded-md flex-col"
+        className=" mx-4 my-2 py-3  p-2 rounded-md flex-col border border-gray-400 cursor-pointer "
         draggable
         onDragStart={(e) => handleDragStart(e, todo)}
         onDragEnd={handleDragEnd}
         onDragOver={(e) => handleDragOver(e, todo)}
       >
-        <div className="flex items-start its">
+        <div className="flex items-start child-item">
           <div className="flex items-start justify-center">
             <Checkbox
               onChange={handleCompleted}
