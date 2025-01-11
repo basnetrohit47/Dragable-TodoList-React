@@ -45,7 +45,7 @@ export const useGenericDrag = <T>({
     setDraggingItemId(getItemId(item));
 
     const element = e.currentTarget as HTMLElement;
-    document.body.style.cursor = "pointer";
+    
     if (selectedItemClass) element.classList.add(selectedItemClass);
   };
 
@@ -79,7 +79,6 @@ export const useGenericDrag = <T>({
   };
 
   const handleDragEnd = (e: React.DragEvent) => {
-    document.body.style.cursor = "";
     setDraggingItemId(null);
     const element = e.currentTarget as HTMLElement;
     const childElement = childSelector && element.querySelector(childSelector);

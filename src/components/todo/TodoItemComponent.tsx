@@ -26,7 +26,7 @@ export const TodoItemComponent = ({
   return (
     <>
       <Box
-        className=" mx-4 my-2 py-3  p-2 rounded-md flex-col border border-gray-400 cursor-pointer "
+        className="bg-gray-200 mx-4 my-2 py-3  p-2 rounded-md flex-col  cursor-pointer border border-gray-300"
         draggable
         onDragStart={(e) => handleDragStart(e, todo)}
         onDragEnd={handleDragEnd}
@@ -46,21 +46,26 @@ export const TodoItemComponent = ({
             <p
               className={`  ${
                 todo.completed ? "line-through text-gray-400" : "text-gray-700 "
-              } capitalize text-left pt-[7px] text-sm pb-2 `}
+              } capitalize text-left pt-[7px] text-sm pb-2 bold font-medium`}
             >
               {todo.description}
             </p>
           </div>
 
           <div className="ml-auto flex pr-2 mt-2">
-            <Chip
-              label={priorityList[todo.priority || 4].label}
-              variant="outlined"
-              sx={{ height: "20px" }}
-              className={`!text-[10px] mx-4 ${
-                priorityList[todo.priority || 4].style
-              }`}
-            />
+            {todo.priority && todo.priority !== 4 && (
+              <Chip
+                label={
+                  priorityList[todo.priority ? todo.priority - 1 : 3].label
+                }
+                variant="outlined"
+                sx={{ height: "20px" }}
+                className={`!text-[10px] mx-4 ${
+                  priorityList[todo.priority ? todo.priority - 1 : 3].style
+                }`}
+              />
+            )}
+
             <DragIndicatorIcon className="text-gray-400  !text-[20px]" />
           </div>
         </div>

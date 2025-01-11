@@ -14,7 +14,7 @@ export const TodoListComponent = () => {
   }, [todoList]);
   const { handleDragStart, handleDragEnd, handleDragOver } =
     useGenericDrag<TodoField>({
-      selectedItemClass: "bg-white",
+      selectedItemClass: "!bg-white",
       childSelector: ".child-item",
       childSelectorStyle: "opacity-0",
       items: todos,
@@ -25,7 +25,7 @@ export const TodoListComponent = () => {
   return (
     <>
       <div className="flex items-center justify-center h-screen ">
-        <div className="bg-gray-100 w-[450px]  rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.1)] pb-4">
+        <div className="bg-white w-[450px]  rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.1)] pb-4">
           <h1 className="text-lg text-black mt-6 mb-6 font-bold capitalize">
             Todo list
           </h1>

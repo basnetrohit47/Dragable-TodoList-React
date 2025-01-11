@@ -10,7 +10,7 @@ interface TodoStore {
  }
 
 export const useTodoStore = create<TodoStore>((set)=>({
-    todos:[{id:1,description:"some",position:1},{id:2,description:"another",position:2,priority:3},{id:3,description:"free",position:3,priority:2}],
+    todos:[{id:1,description:"Take the dog out",position:1,priority:1},{id:2,description:"Buy a gift for Juni",position:2,priority:3},{id:3,description:"Call pierre at 2pm",position:3,priority:2},{id:4,description:"Go for running",position:1}],
     addItem:(newTodo)=>set((state)=>({
         todos:[...state.todos,{...newTodo,id:Date.now(),position:state.todos.length+1 }]
     })),
