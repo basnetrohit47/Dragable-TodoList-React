@@ -1,50 +1,94 @@
-# React + TypeScript + Vite
+# React Drag-and-Drop Todo List
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and elegant **React Todo List** application that allows users to manage their tasks with drag-and-drop functionality. The application showcases the power of React for building dynamic user interfaces and offers an intuitive experience for task management.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- **Add Tasks**: Easily add new tasks to your todo list.
+- **Delete Tasks**: Remove tasks you no longer need.
+- **Drag-and-Drop**: Reorder tasks seamlessly with a drag-and-drop interface.
+- **Responsive Design**: Optimized for both desktop and mobile screens.
+- **Dynamic State Management**: Fully functional state management using React's state hooks.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+---
 
-- Configure the top-level `parserOptions` property like this:
+## 📸 Demo
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Reordering Tasks with Drag-and-Drop:
+
+<!-- ![Drag-and-Drop Demo](assets/drag-drop-demo.gif) -->
+
+![Drag-and-Drop Demo](public/todogif.gif)
+
+---
+
+## 🛠️ Installation
+
+To run this project locally, follow these steps:
+
+1. **Clone the Repository**:
+
+   ```bash
+   git clone https://github.com/your-username/react-drag-drop-todo.git
+   cd react-drag-drop-todo
+   ```
+
+2. **Install Dependencies**:
+   Make sure you have [Node.js](https://nodejs.org/) installed. Then, run:
+
+   ```bash
+   npm install
+   ```
+
+3. **Start the Application**:
+   Start the development server with:
+   ```bash
+   npm start
+   ```
+   Open [http://localhost:3000](http://localhost:3000) in your browser to view the app.
+
+---
+
+## 🔅 Usage
+
+1. **Add a Task**:
+   - Enter a task in the input field and click the "Add" button.
+2. **Reorder Tasks**:
+   - Drag a task item to reorder it within the list.
+3. **Delete a Task**:
+   - Click the delete icon to remove a task from the list.
+
+---
+
+## 👨‍💻 Technologies Used
+
+- **React**: Front-end library for building user interfaces.
+- **TypeScript** (Optional): For type-safe development (if applicable).
+- **CSS**: Styling for responsive design and drag-and-drop elements.
+
+---
+
+## 💁‍♂️ Project Structure
+
+```
+react-drag-drop-todo/
+├── public/
+├── src/
+│   ├── components/        # Reusable components
+│   ├── hooks/             # Custom hooks (e.g., drag-and-drop logic)
+│   ├── App.tsx             # Main app component
+│   └── main.tsx          # React entry point
+├── package.json
+└── README.md              # Project documentation
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+---
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## 🙋‍♂️ Questions?
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+If you have any questions, feel free to open an issue or contact me directly:
+
+- GitHub: https://github.com/basnetrohit47
+- Email: basnetrohit47@gmail.com
